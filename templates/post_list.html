@@ -21,7 +21,11 @@
                                 <li class = "comment-empty">NO COMMENT</li>
                             {% endfor %}
                         </ul>
-                        <img src = "{{ post.thumbnail.url }}" alt = "" >
+                        {% if post.thumbnail %}
+                            <img src = "{{ post.thumbnail.url }}" alt = "" >
+                        {% else %}
+                            <img src = "" alt = "" >
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
