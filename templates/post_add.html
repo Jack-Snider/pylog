@@ -5,8 +5,22 @@
         <link rel = "stylesheet" href = "{% static 'css/style.css' %}" >
     </head>
     <body>
-        <div>
-            <h1>Post Add</h1>
+        <div id = "navbar">
+            <span>CREATE POST</span>
+        </div>
+        <div id = "post-add">
+            <form method = "POST">
+                {% csrf_token %}
+                <div>
+                    <label>TITLE</label>
+                    <input name = "title" type = "text" >
+                </div>
+                <div>
+                    <label>CONTENT</label>
+                    <textarea name = "content" cols = "50" rows = "10"></textarea>
+                </div>
+                <button type = "submit" class = "btn btn-primary">UPLOAD</button>
+            </form>
         </div>
     </body>
 </html>
