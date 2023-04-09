@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from config.views import index # index import
-from blog.views import post_list
+from blog.views import post_list, post_detail, post_add
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,6 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path( "", index ), # 경로가 없을 때 index View 연결
     path( "posts/", post_list ),
+    path( "posts/<int:post_id>/", post_detail ),
+    path( "posts/add/", post_add ),
 ]
 
 urlpatterns += static(
