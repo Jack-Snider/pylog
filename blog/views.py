@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from blog.models import Post # Post 모델을 사용하기 위해 import
+from blog.models import Post, Comment # Post, Comment 모델을 사용하기 위해 import
 # Create your views here.
 
 def post_list( request ):
@@ -18,7 +18,21 @@ def post_detail( request, post_id ):
     
     post = Post.objects.get( id = post_id ) # id값이 URL에서 받은 post_id값인 Post객체
     print( post )                           # 가져온 객체를 print 함수로 확인
-    
+    if request.method == "POST":
+
+        # textarea의 "name" 속성값( "comment" )을 가져온다
+        comment_content = request.POST[ "comment" ]
+        print( comment_content )
+
+        Comment.objects.create(
+            post = post,
+            content = comment_content,
+        )
+
+    # GET 요청으로 글 상세페이지를 보여주거나
+    # POST 요청으로 댓글이 생성되거나
+    # 두 경우의 모두, 이 글의 상세 페이지를 보여주면 된다.
+
     context = {
         "post" : post,
     }
@@ -40,11 +54,12 @@ def post_add( request ):
         print(request.POST)         # POST 메서드로 전달된 데이터를 출력한다.
         title = request.POST[ "title" ]
         content = request.POST[ "content" ]
-
+        thumbnail = request.FILES[ "thumbnail" ] # ( 이미지 파일 )전송된 file은 request.POST 대신 request.FILES에서 가져와야 한다.
         # Post 모델의 create()를 사용해 객체를 생성
         post = Post.objects.create(
             title = title,
             content = content,
+            thumbnail = thumbnail,
         )
 
         print( title )

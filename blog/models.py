@@ -14,6 +14,7 @@ class Post( models.Model ):
 
 class Comment( models.Model ):
 
+    # Post 모델과 ForeignKey 관계로 연결
     post = models.ForeignKey( Post, on_delete = models.CASCADE )
     content = models.TextField( "댓글 내용" )
 

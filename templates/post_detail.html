@@ -20,6 +20,11 @@
                     <li class = "comment-empty">NO COMMENT</li>
                 {% endfor %}
             </ul>
+            <form method = "POST">
+                {% csrf_token %}
+                <textarea name = "comment"></textarea>
+                <button type = "submit" class = "btn btn-primary">COMMENT</button>
+            </form>
         </div>
     </body>
 </html>

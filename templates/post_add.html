@@ -9,7 +9,7 @@
             <span>CREATE POST</span>
         </div>
         <div id = "post-add">
-            <form method = "POST">
+            <form method = "POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
                     <label>TITLE</label>
@@ -20,6 +20,10 @@
                     <textarea name = "content" cols = "50" rows = "10"></textarea>
                 </div>
                 <button type = "submit" class = "btn btn-primary">UPLOAD</button>
+                <div>
+                    <label>THUMBNAIL</label>
+                    <input name = "thumbnail" type = "file">
+                </div>
             </form>
         </div>
     </body>
